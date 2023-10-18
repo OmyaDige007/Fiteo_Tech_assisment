@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <!-- icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <!-- Include Chart.js library -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- css -->
+    <link rel="stylesheet" href="style.css">
+    <title>Dashboard</title>
+
+    <style>
+
+      
+        :root{
+            --offcanvas-width:270px;
+            --topNavbarHeight:56px
+        }
+
+        .sidebar-nav{
+            width: var(--offcanvas-width);
+        }
+
+        @media (min-width:992px){
+            body{
+                overflow: auto !important;
+            }
+            .offcanvas-backdrop::before{
+                display: none !important;
+            }
+            .sidebar-nav{
+                transform: none;
+                visibility: visible !important;
+                top: var(--topNavbarHeight);
+                height: calc(100% -var(--topNavbarHeight));
+            }
+        }
+        
+        .chart-container {
+                width: 100%;
+                max-width: 600px;
+                margin: 20px auto;
+                background-color: #fff;
+                border: 1px solid #ddd;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            }
+    
+            /* Custom mobile view CSS */
+            @media (max-width: 768px) {
+                .chart-container {
+                    max-width: 100%;
+                }
+            }
+             
+            .circle-graph {
+                        position: relative;
+                        width: 100px;
+                        height: 100px;
+                        background: transparent;
+                        border: 5px solid transparent;
+                        border-top-color: #3498db;
+                        border-radius: 50%;
+                        animation: spin 2s linear infinite;
+                    }
+            
+                    .circle-graph::after {
+                        content: "";
+                        display: block;
+                        position: absolute;
+                        width: 100%;
+                        height: 100%;
+                        background: transparent;
+                        border: 5px solid transparent;
+                        border-top-color: #e74c3c;
+                        border-radius: 50%;
+                    }
+            
+                    @keyframes spin {
+                        0% {
+                            transform: rotate(0deg);
+                        }
+                        100% {
+                            transform: rotate(360deg);
+                        }
+                    }
+            
+                    /* Custom mobile view CSS */
+                    @media (max-width: 768px) {
+                        .circle-graph {
+                            width: 60px;
+                            height: 60px;
+                            border-width: 4px;
+                        }
+            
+                        .circle-graph::after {
+                            border-width: 4px;
+                        }
+                    }
+        
+    </style>
+  </head>
+  <body>
+   
+
+    <!-- nav start -->
+    <nav class="navbar navbar-expand-lg navbar">
+        <div class="container-fluid">
+
+            <!-- offcanvas trigger -->
+            <i  class="fas fa-bars navbar-toggler me-2"  type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample"></i>
+            <!-- offcanvas trigger end -->
+
+          <a class="navbar-brand me-auto" href="#"><b>Hello Omkar</b><i class="bi bi-hand-thumbs-up" style="margin-left: 10px; background-color: burlywood; border-radius: 30px;"></i></a>
+
+          <i  class="fas fa-bars navbar-toggler"  type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></i>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            
+            <form class="d-flex ms-auto">
+                <div class="input-group my-3 my-lg-0">
+                    <div class="search">
+                        <i class="bi bi-search"></i>
+                        <input type="text" placeholder="Search...">
+                    </div>
+                </div>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+    <!-- nav end -->
+
+    <!-- off canvas -->
+      
+<div class="offcanvas offcanvas-start sidebar-nav bg-dark text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+         
+          <!-- <button type="button" class="btn-close text-reset " data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+        </div>
+    <div class="offcanvas-body">
+           
+        <div id="menu">
+            <div class="logo" style="margin-right: 100px; margin-top: 50px;">
+                <h2> <i class="bi bi-nut ms-auto" style="margin-left: -40px;"></i></h2>
+                <h4 >Dashboard</h4>
+            </div>
+
+        <div class="items">
+            <li><i class="bi bi-key"></i><a href="#">Dashboard</a></li>
+            <li><i class="bi bi-box"></i><a href="#">Product</a></li>
+            <li><i class="bi bi-person-circle"></i><a href="#">Customers</a></li>
+            <li><i class="bi bi-cash-coin"></i><a href="#">Income</a></li>
+            <li><i class="bi bi-star"></i><a href="#">Promote</a></li>
+            <li><i class="bi bi-question-square"></i><a href="#">Help</a></li>
+        </div>
+
+        </div>
+      </div>
+ </div>
+    <!-- off canvas end -->
+
+    <!--  -->
+
+    <div class="values">
+        <div class="val-box" style=" margin-top: 20px;">
+            <i class="bi bi-coin" style="background-color: rgb(202, 244, 202); color: green;"></i>
+            <div>
+                <span>Earning</span>
+                <h3>8,267</h3>
+                <span style="color: green;">^33.9%</span><span> this month</span>
+            </div>
+        </div>
+
+        <div class="val-box" style=" margin-top: 20px;">
+            <i class="bi bi-journal-text" style="background-color: rgb(234, 177, 234); color: purple;"></i>
+            <div>
+                <span>Orders</span>
+                <h3>$2.4k</h3>
+                <span style="color: rgb(232, 0, 39);">v2%</span><span> this month</span>
+            </div>
+        </div>
+
+        <div class="val-box" style=" margin-top: 20px;">
+            <i class="bi bi-cash-coin" style="background-color: lightblue; color: blue;"></i>
+            <div>
+                <span>Balance</span>
+                <h3>$2.4k</h3>
+                <span style="color: rgb(232, 0, 39);">v2%</span><span> this month</span>
+            </div>
+        </div>
+
+        <div class="val-box" style=" margin-top: 20px;">
+            <i class="bi bi-handbag" style="background-color: rgb(252, 199, 199); color: darkred;"></i>
+            <div>
+                <span>Total Sale</span>
+                <h3>$89k</h3>
+                <span style="color: green;">^11%</span><span> this week</span>
+            </div>
+        </div>
+    </div>
+        <div class="chart-container">
+            <canvas id="myChart"></canvas>
+          
+        </div>
+        <div class="circle-graph" style="margin-left: 1000px;margin-top: -200px;"></div>
+        
+        <script>
+            // Sample data for the bar chart
+            const data = {
+                labels: ['January', 'February', 'March', 'April', 'May','June', 'July', 'August', 'September', 'Octomber','November','December'],
+                datasets: [{
+                    label: 'Overview Monthly Earning',
+                    data: [12, 19, 3, 5, 2,20,17,15,8,4,9,12],
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 1
+                }]
+            };
+    
+            const config = {
+                type: 'bar',
+                data: data,
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            };
+    
+            // Create and render the chart
+            const ctx = document.getElementById('myChart').getContext('2d');
+            const myChart = new Chart(ctx, config);
+        </script>
+  
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+  </body>
+</html>
